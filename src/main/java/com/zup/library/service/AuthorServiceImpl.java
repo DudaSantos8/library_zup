@@ -35,4 +35,16 @@ public class AuthorServiceImpl implements AuthorService {
             throw new RuntimeException("This Author don't exist");
         }
     }
+
+    @Override
+    public void delete(Long id) {
+        Optional<Author> optional = authorRepository.findById(id);
+        if(optional.isPresent()){
+            authorRepository.delete(optional.get());
+        }else {
+            throw new RuntimeException("This Author don't exist");
+        }
+    }
+
+
 }

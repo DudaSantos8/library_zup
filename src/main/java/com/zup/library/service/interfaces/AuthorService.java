@@ -7,4 +7,6 @@ public interface AuthorService {
     void save (AuthorRegisterDTO authorRegisterDTO);
 
     void update (Long id, AuthorUpdateDTO authorUpdateDTO);
+
+    void delete (Long id);
 }
