@@ -1,7 +1,11 @@
 package com.zup.library.service.mappers;
 
 import com.zup.library.controllers.author.dtos.AuthorRegisterDTO;
+import com.zup.library.controllers.author.dtos.AuthorResponseDTO;
 import com.zup.library.models.Author;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthorMapper {
     public static Author forAuthor(AuthorRegisterDTO registerDTO){
@@ -13,5 +17,19 @@ public class AuthorMapper {
         author.setYearOfDeath(registerDTO.getYearOfDeath());
 
         return author;
+    }
+
+    public static List<AuthorResponseDTO> forAuthorResponse(List<Author> authorList){
+        List<AuthorResponseDTO> dtoList = new ArrayList<>();
+        for(Author author : authorList){
+            AuthorResponseDTO dto = new AuthorResponseDTO();
+            dto.setId(author.getId());
+            dto.setName(author.getName());
+            dto.setLastName(author.getLastName());
+            dto.setYearOfBirth(author.getYearOfBirth());
+            dto.setYearOfDeath(author.getYearOfDeath());
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 }

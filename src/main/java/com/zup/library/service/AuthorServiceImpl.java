@@ -1,6 +1,7 @@
 package com.zup.library.service;
 
 import com.zup.library.controllers.author.dtos.AuthorRegisterDTO;
+import com.zup.library.controllers.author.dtos.AuthorResponseDTO;
 import com.zup.library.controllers.author.dtos.AuthorUpdateDTO;
 import com.zup.library.models.Author;
 import com.zup.library.repositories.AuthorRepository;
@@ -9,6 +10,7 @@ import com.zup.library.service.mappers.AuthorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,6 +46,12 @@ public class AuthorServiceImpl implements AuthorService {
         }else {
             throw new RuntimeException("This Author don't exist");
         }
+    }
+
+    @Override
+    public List<AuthorResponseDTO> getAllAuthor() {
+        List<Author> authors = authorRepository.findAll();
+        return AuthorMapper.forAuthorResponse(authors);
     }
 
 

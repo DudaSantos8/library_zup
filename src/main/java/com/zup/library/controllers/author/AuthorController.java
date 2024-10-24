@@ -1,22 +1,28 @@
 package com.zup.library.controllers.author;
 
 import com.zup.library.controllers.author.dtos.AuthorRegisterDTO;
+import com.zup.library.controllers.author.dtos.AuthorResponseDTO;
 import com.zup.library.controllers.author.dtos.AuthorUpdateDTO;
 import com.zup.library.service.interfaces.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/api/author")
 public class AuthorController {
 
     @Autowired
     private AuthorService authorService;
+
+    @GetMapping()
+    public List<AuthorResponseDTO> showAuthors(){
+        return authorService.getAllAuthor();
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
