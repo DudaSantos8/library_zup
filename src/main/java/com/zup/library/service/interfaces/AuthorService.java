@@ -3,7 +3,6 @@ package com.zup.library.service.interfaces;
 import com.zup.library.controllers.author.dtos.AuthorRegisterDTO;
 import com.zup.library.controllers.author.dtos.AuthorResponseDTO;
 import com.zup.library.controllers.author.dtos.AuthorUpdateDTO;
-import com.zup.library.models.Author;
 
 import java.util.List;
 

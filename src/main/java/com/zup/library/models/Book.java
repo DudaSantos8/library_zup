@@ -14,7 +14,7 @@ public class Book {
     private String title;
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinTable(name = "book_author",
                joinColumns = @JoinColumn(name = "book_fk"),
                inverseJoinColumns = @JoinColumn(name = "author_fk"))

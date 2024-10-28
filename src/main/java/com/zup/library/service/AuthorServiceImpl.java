@@ -42,7 +42,11 @@ public class AuthorServiceImpl implements AuthorService {
     public void delete(Long id) {
         Optional<Author> optional = authorRepository.findById(id);
         if(optional.isPresent()){
-            authorRepository.delete(optional.get());
+            if(optional.get().getBook().isEmpty()){
+                authorRepository.delete(optional.get());
+            }else {
+                throw new RuntimeException("This Author have books");
+            }
         }else {
             throw new RuntimeException("This Author don't exist");
         }
