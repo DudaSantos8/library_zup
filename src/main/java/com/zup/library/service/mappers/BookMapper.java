@@ -19,15 +19,17 @@ public class BookMapper {
     }
 
     public static List<BookResponseDTO> forResponse(List<Book> bookList){
-        BookResponseDTO responseDTO = new BookResponseDTO();
         List<BookResponseDTO> dtoList = new ArrayList<>();
+
         for(Book book : bookList ){
+            BookResponseDTO responseDTO = new BookResponseDTO();
             responseDTO.setId(book.getId());
             responseDTO.setTitle(book.getTitle());
             responseDTO.setDescription(book.getDescription());
             responseDTO.setAuthor(AuthorMapper.forAuthorResponse(book.getAuthor()));
             dtoList.add(responseDTO);
         }
+
         return dtoList;
     }
 }

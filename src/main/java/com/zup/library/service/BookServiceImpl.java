@@ -2,6 +2,7 @@ package com.zup.library.service;
 
 import com.zup.library.controllers.book.dtos.BookRegisterDTO;
 import com.zup.library.controllers.book.dtos.BookResponseDTO;
+import com.zup.library.controllers.book.dtos.BookUpdateDTO;
 import com.zup.library.models.Author;
 import com.zup.library.models.Book;
 import com.zup.library.repositories.AuthorRepository;
@@ -11,8 +12,10 @@ import com.zup.library.service.mappers.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -26,9 +29,33 @@ public class BookServiceImpl implements BookService {
     @Override
     public void save(BookRegisterDTO bookRegisterDTO) {
         for(Author author : bookRegisterDTO.getAuthor()){
-            authorRepository.save(author);
+            Optional<Author> authorRepositoryOptional = authorRepository.findById(author.getId());
+            if(authorRepositoryOptional.isEmpty()){
+                throw new RuntimeException(author.getName() + " don't exist");
+            }
         }
         bookRepository.save(BookMapper.forBook(bookRegisterDTO));
+    }
+
+    @Override
+    public void update(Long id,BookUpdateDTO bookUpdateDTO) {
+        Optional<Book> optional = bookRepository.findById(id);
+        Set<Author> authors = new HashSet<>();
+        if(optional.isPresent()){
+            for(Author author : bookUpdateDTO.getAuthor()){
+                Optional<Author> authorRepositoryOptional = authorRepository.findById(author.getId());
+                if(authorRepositoryOptional.isEmpty()){
+                    throw new RuntimeException(author.getName() + " don't exist");
+                }
+                authors.add(author);
+            }
+            optional.get().setTitle(bookUpdateDTO.getTitle());
+            optional.get().setAuthor(authors);
+            optional.get().setDescription(bookUpdateDTO.getDescription());
+            bookRepository.saveAndFlush(optional.get());
+        }else {
+            throw new RuntimeException("This Book don't exist");
+        }
     }
 
     @Override
