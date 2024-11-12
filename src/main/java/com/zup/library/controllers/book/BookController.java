@@ -5,6 +5,7 @@ import com.zup.library.controllers.book.dtos.BookRegisterDTO;
 import com.zup.library.controllers.book.dtos.BookResponseDTO;
 import com.zup.library.controllers.book.dtos.BookUpdateDTO;
 import com.zup.library.service.interfaces.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +28,12 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveBook(@RequestBody BookRegisterDTO registerDTO){
+    public void saveBook(@RequestBody @Valid BookRegisterDTO registerDTO){
         bookService.save(registerDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAuthor(@PathVariable Long id, @RequestBody BookUpdateDTO updateDTO){
+    public ResponseEntity<?> updateAuthor(@PathVariable Long id, @RequestBody @Valid BookUpdateDTO updateDTO){
         try{
             bookService.update(id ,updateDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();

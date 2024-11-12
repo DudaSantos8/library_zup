@@ -20,16 +20,21 @@ public class AuthorMapper {
         return author;
     }
 
+    private static AuthorResponseDTO forAuthorResponse(Author author){
+        AuthorResponseDTO dto = new AuthorResponseDTO();
+
+        dto.setId(author.getId());
+        dto.setName(author.getName());
+        dto.setLastName(author.getLastName());
+        dto.setYearOfBirth(author.getYearOfBirth());
+        dto.setYearOfDeath(author.getYearOfDeath());
+        return dto;
+    }
+
     public static List<AuthorResponseDTO> forAuthorResponse(List<Author> authorList){
         List<AuthorResponseDTO> dtoList = new ArrayList<>();
-        for(Author author : authorList){
-            AuthorResponseDTO dto = new AuthorResponseDTO();
-            dto.setId(author.getId());
-            dto.setName(author.getName());
-            dto.setLastName(author.getLastName());
-            dto.setYearOfBirth(author.getYearOfBirth());
-            dto.setYearOfDeath(author.getYearOfDeath());
-            dtoList.add(dto);
+        for (Author author : authorList){
+            dtoList.add(forAuthorResponse(author));
         }
         return dtoList;
     }
@@ -37,13 +42,7 @@ public class AuthorMapper {
     public static List<AuthorResponseDTO> forAuthorResponse(Set<Author> authorList){
         List<AuthorResponseDTO> dtoList = new ArrayList<>();
         for(Author author : authorList){
-            AuthorResponseDTO dto = new AuthorResponseDTO();
-            dto.setId(author.getId());
-            dto.setName(author.getName());
-            dto.setLastName(author.getLastName());
-            dto.setYearOfBirth(author.getYearOfBirth());
-            dto.setYearOfDeath(author.getYearOfDeath());
-            dtoList.add(dto);
+            dtoList.add(forAuthorResponse(author));
         }
         return dtoList;
     }
