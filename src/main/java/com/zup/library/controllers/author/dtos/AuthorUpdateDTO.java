@@ -1,10 +1,19 @@
 package com.zup.library.controllers.author.dtos;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
+
 public class AuthorUpdateDTO {
 
+    @Size(min = 3, message = "field not valid")
     private String name;
+
+    @Size(min = 3, message = "field not valid")
     private String lastName;
+
+    @Min(value = 1950)
     private int yearOfBirth;
+
     private int yearOfDeath;
 
     public AuthorUpdateDTO() {
