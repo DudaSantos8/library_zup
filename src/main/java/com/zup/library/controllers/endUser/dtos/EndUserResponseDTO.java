@@ -1,6 +1,6 @@
-package com.zup.library.controllers.author.dtos;
+package com.zup.library.controllers.endUser.dtos;
 
-public class AuthorResponseDTO {
+public class EndUserResponseDTO {
 
     private Long id;
     private String name;
@@ -8,7 +8,7 @@ public class AuthorResponseDTO {
     private int yearOfBirth;
     private int yearOfDeath;
 
-    public AuthorResponseDTO() {
+    public EndUserResponseDTO() {
     }
 
     public Long getId() {

@@ -26,7 +26,7 @@ public class BookMapper {
             responseDTO.setId(book.getId());
             responseDTO.setTitle(book.getTitle());
             responseDTO.setDescription(book.getDescription());
-            responseDTO.setAuthor(AuthorMapper.forAuthorResponse(book.getAuthor()));
+            responseDTO.setAuthor(EndUserMapper.forUserResponse(book.getAuthor()));
             dtoList.add(responseDTO);
         }
 

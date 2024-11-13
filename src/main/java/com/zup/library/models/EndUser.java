@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Author {
+public class EndUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,10 +15,10 @@ public class Author {
     private int yearOfBirth;
     private int yearOfDeath;
 
-    @ManyToMany(mappedBy = "author")
+    @ManyToMany(mappedBy = "endUser")
     private Set<Book> book = new HashSet<>();
 
-    public Author() {
+    public EndUser() {
     }
 
     public Long getId() {

@@ -1,6 +1,6 @@
 package com.zup.library.controllers.book.dtos;
 
-import com.zup.library.controllers.author.dtos.AuthorResponseDTO;
+import com.zup.library.controllers.endUser.dtos.EndUserResponseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class BookResponseDTO {
     private Long id;
     private String title;
     private String description;
-    private List<AuthorResponseDTO> author = new ArrayList<>();
+    private List<EndUserResponseDTO> author = new ArrayList<>();
 
     public BookResponseDTO() {
     }
@@ -39,11 +39,11 @@ public class BookResponseDTO {
         this.description = description;
     }
 
-    public List<AuthorResponseDTO> getAuthor() {
+    public List<EndUserResponseDTO> getAuthor() {
         return author;
     }
 
-    public void setAuthor(List<AuthorResponseDTO> author) {
+    public void setAuthor(List<EndUserResponseDTO> author) {
         this.author = author;
     }
 }

@@ -1,9 +1,9 @@
-package com.zup.library.controllers.author;
+package com.zup.library.controllers.endUser;
 
-import com.zup.library.controllers.author.dtos.AuthorRegisterDTO;
-import com.zup.library.controllers.author.dtos.AuthorResponseDTO;
-import com.zup.library.controllers.author.dtos.AuthorUpdateDTO;
-import com.zup.library.service.interfaces.AuthorService;
+import com.zup.library.controllers.endUser.dtos.EndUserRegisterDTO;
+import com.zup.library.controllers.endUser.dtos.EndUserResponseDTO;
+import com.zup.library.controllers.endUser.dtos.EndUserUpdateDTO;
+import com.zup.library.service.interfaces.EndUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,30 +14,30 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/author")
-public class AuthorController {
+@RequestMapping("/api/endUser")
+public class EndUserController {
 
     @Autowired
-    private AuthorService authorService;
+    private EndUserService endUserService;
 
     @GetMapping()
-    public List<AuthorResponseDTO> showAuthors(){
-        return authorService.getAllAuthor();
+    public List<EndUserResponseDTO> showAuthors(){
+        return endUserService.getAllUsers();
     }
 
     @PostMapping
-    public ResponseEntity<?> saveAuthor(@RequestBody @Valid AuthorRegisterDTO registerDTO){
+    public ResponseEntity<?> saveAuthor(@RequestBody @Valid EndUserRegisterDTO registerDTO){
         try{
-            authorService.save(registerDTO);
+            endUserService.save(registerDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
         }    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAuthor(@PathVariable Long id, @RequestBody @Valid AuthorUpdateDTO updateDTO){
+    public ResponseEntity<?> updateAuthor(@PathVariable Long id, @RequestBody @Valid EndUserUpdateDTO updateDTO){
         try{
-            authorService.update(id ,updateDTO);
+            endUserService.update(id ,updateDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
@@ -47,7 +47,7 @@ public class AuthorController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAuthor(@PathVariable Long id){
         try{
-            authorService.delete(id);
+            endUserService.delete(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }catch (Exception e){
             return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));

@@ -1,6 +1,5 @@
 package com.zup.library.controllers.book;
 
-import com.zup.library.controllers.author.dtos.AuthorUpdateDTO;
 import com.zup.library.controllers.book.dtos.BookRegisterDTO;
 import com.zup.library.controllers.book.dtos.BookResponseDTO;
 import com.zup.library.controllers.book.dtos.BookUpdateDTO;

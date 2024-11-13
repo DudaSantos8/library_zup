@@ -18,7 +18,7 @@ public class Book {
     @JoinTable(name = "book_author",
                joinColumns = @JoinColumn(name = "book_fk"),
                inverseJoinColumns = @JoinColumn(name = "author_fk"))
-    private Set<Author> author = new HashSet<>();
+    private Set<EndUser> endUser = new HashSet<>();
 
     public Book() {
     }
@@ -47,11 +47,11 @@ public class Book {
         this.description = description;
     }
 
-    public Set<Author> getAuthor() {
-        return author;
+    public Set<EndUser> getAuthor() {
+        return endUser;
     }
 
-    public void setAuthor(Set<Author> author) {
-        this.author = author;
+    public void setAuthor(Set<EndUser> endUser) {
+        this.endUser = endUser;
     }
 }
