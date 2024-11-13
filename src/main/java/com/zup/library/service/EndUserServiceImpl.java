@@ -21,15 +21,15 @@ public class EndUserServiceImpl implements EndUserService {
 
     @Override
     public void save(EndUserRegisterDTO registerDTO) {
-        Optional<EndUser> author = endUserRepository.findByName(registerDTO.getName());
-        if(author.isPresent()){
-            throw new RuntimeException("This author already exist");
+        Optional<EndUser> optional = endUserRepository.findByName(registerDTO.getName());
+        if(optional.isPresent()){
+            throw new RuntimeException("This user already exist");
         }
         endUserRepository.save(EndUserMapper.forUser(registerDTO));
     }
 
     @Override
-    public void update(Long id, EndUserUpdateDTO endUserUpdateDTO) {
+    public void update(String id, EndUserUpdateDTO endUserUpdateDTO) {
         Optional<EndUser> optional = endUserRepository.findById(id);
         if(optional.isPresent()){
             optional.get().setName(endUserUpdateDTO.getName());
@@ -38,21 +38,21 @@ public class EndUserServiceImpl implements EndUserService {
             optional.get().setYearOfDeath(endUserUpdateDTO.getYearOfDeath());
             endUserRepository.save(optional.get());
         }else {
-            throw new RuntimeException("This Author don't exist");
+            throw new RuntimeException("This user don't exist");
         }
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         Optional<EndUser> optional = endUserRepository.findById(id);
         if(optional.isPresent()){
             if(optional.get().getBook().isEmpty()){
                 endUserRepository.delete(optional.get());
             }else {
-                throw new RuntimeException("This Author have books");
+                throw new RuntimeException("This user have books");
             }
         }else {
-            throw new RuntimeException("This Author don't exist");
+            throw new RuntimeException("This user don't exist");
         }
     }
 

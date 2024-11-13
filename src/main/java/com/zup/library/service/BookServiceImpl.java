@@ -28,9 +28,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void save(BookRegisterDTO bookRegisterDTO) {
-        for(EndUser endUser : bookRegisterDTO.getAuthor()){
-            Optional<EndUser> authorRepositoryOptional = endUserRepository.findById(endUser.getId());
-            if(authorRepositoryOptional.isEmpty()){
+        for(EndUser endUser : bookRegisterDTO.getEndUser()){
+            Optional<EndUser> userRepositoryOptional = endUserRepository.findById(endUser.getId());
+            if(userRepositoryOptional.isEmpty()){
                 throw new RuntimeException(endUser.getName() + " don't exist");
             }
         }
@@ -38,19 +38,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void update(Long id,BookUpdateDTO bookUpdateDTO) {
+    public void update(String id,BookUpdateDTO bookUpdateDTO) {
         Optional<Book> optional = bookRepository.findById(id);
         Set<EndUser> endUsers = new HashSet<>();
         if(optional.isPresent()){
-            for(EndUser endUser : bookUpdateDTO.getAuthor()){
-                Optional<EndUser> authorRepositoryOptional = endUserRepository.findById(endUser.getId());
-                if(authorRepositoryOptional.isEmpty()){
+            for(EndUser endUser : bookUpdateDTO.getEndUser()){
+                Optional<EndUser> userRepositoryOptional = endUserRepository.findById(endUser.getId());
+                if(userRepositoryOptional.isEmpty()){
                     throw new RuntimeException(endUser.getName() + " don't exist");
                 }
                 endUsers.add(endUser);
             }
             optional.get().setTitle(bookUpdateDTO.getTitle());
-            optional.get().setAuthor(endUsers);
+            optional.get().setEndUser(endUsers);
             optional.get().setDescription(bookUpdateDTO.getDescription());
             bookRepository.saveAndFlush(optional.get());
         }else {
@@ -65,10 +65,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void delete (Long id){
+    public void delete (String id){
         Optional<Book> optional = bookRepository.findById(id);
         if(optional.isPresent()){
-            optional.get().getAuthor().clear();
+            optional.get().getEndUser().clear();
             bookRepository.delete(optional.get());
         }else {
             throw new RuntimeException("This book don't exist");

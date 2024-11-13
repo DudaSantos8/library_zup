@@ -1,6 +1,7 @@
 package com.zup.library.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,25 +10,25 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @UuidGenerator
+    private String id;
     private String title;
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinTable(name = "book_author",
+    @JoinTable(name = "books_users",
                joinColumns = @JoinColumn(name = "book_fk"),
-               inverseJoinColumns = @JoinColumn(name = "author_fk"))
+               inverseJoinColumns = @JoinColumn(name = "user_fk"))
     private Set<EndUser> endUser = new HashSet<>();
 
     public Book() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,11 +48,11 @@ public class Book {
         this.description = description;
     }
 
-    public Set<EndUser> getAuthor() {
+    public Set<EndUser> getEndUser() {
         return endUser;
     }
 
-    public void setAuthor(Set<EndUser> endUser) {
+    public void setEndUser(Set<EndUser> endUser) {
         this.endUser = endUser;
     }
 }

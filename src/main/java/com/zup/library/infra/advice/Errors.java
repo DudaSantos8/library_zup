@@ -1,4 +1,4 @@
-package com.zup.library.infra;
+package com.zup.library.infra.advice;
 
 public class Errors {
     private String field;

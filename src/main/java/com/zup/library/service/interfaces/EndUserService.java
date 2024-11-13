@@ -9,9 +9,9 @@ import java.util.List;
 public interface EndUserService {
     void save (EndUserRegisterDTO endUserRegisterDTO);
 
-    void update (Long id, EndUserUpdateDTO endUserUpdateDTO);
+    void update (String id, EndUserUpdateDTO endUserUpdateDTO);
 
-    void delete (Long id);
+    void delete (String id);
 
     List<EndUserResponseDTO> getAllUsers();
 }

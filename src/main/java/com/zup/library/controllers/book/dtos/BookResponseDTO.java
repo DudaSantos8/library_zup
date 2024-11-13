@@ -7,19 +7,19 @@ import java.util.List;
 
 public class BookResponseDTO {
 
-    private Long id;
+    private String id;
     private String title;
     private String description;
-    private List<EndUserResponseDTO> author = new ArrayList<>();
+    private List<EndUserResponseDTO> endUsers = new ArrayList<>();
 
     public BookResponseDTO() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class BookResponseDTO {
         this.description = description;
     }
 
-    public List<EndUserResponseDTO> getAuthor() {
-        return author;
+    public List<EndUserResponseDTO> getEndUsers() {
+        return endUsers;
     }
 
-    public void setAuthor(List<EndUserResponseDTO> author) {
-        this.author = author;
+    public void setEndUsers(List<EndUserResponseDTO> endUsers) {
+        this.endUsers = endUsers;
     }
 }

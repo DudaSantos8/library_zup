@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EndUserRepository extends JpaRepository<EndUser, Long> {
+public interface EndUserRepository extends JpaRepository<EndUser, String> {
     Optional<EndUser> findByName(String name);
 }

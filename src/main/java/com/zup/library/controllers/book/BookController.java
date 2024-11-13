@@ -32,7 +32,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAuthor(@PathVariable Long id, @RequestBody @Valid BookUpdateDTO updateDTO){
+    public ResponseEntity<?> updateAuthor(@PathVariable String id, @RequestBody @Valid BookUpdateDTO updateDTO){
         try{
             bookService.update(id ,updateDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -42,7 +42,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBook(@PathVariable Long id){
+    public ResponseEntity<?> deleteBook(@PathVariable String id){
         try{
             bookService.delete(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

@@ -13,7 +13,7 @@ public class BookMapper {
 
         book.setTitle(registerDTO.getTitle());
         book.setDescription(registerDTO.getDescription());
-        book.setAuthor(registerDTO.getAuthor());
+        book.setEndUser(registerDTO.getEndUser());
 
         return book;
     }
@@ -26,7 +26,7 @@ public class BookMapper {
             responseDTO.setId(book.getId());
             responseDTO.setTitle(book.getTitle());
             responseDTO.setDescription(book.getDescription());
-            responseDTO.setAuthor(EndUserMapper.forUserResponse(book.getAuthor()));
+            responseDTO.setEndUsers(EndUserMapper.forUserResponse(book.getEndUser()));
             dtoList.add(responseDTO);
         }
 

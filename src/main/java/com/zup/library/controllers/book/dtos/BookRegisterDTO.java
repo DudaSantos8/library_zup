@@ -37,11 +37,11 @@ public class BookRegisterDTO {
         this.description = description;
     }
 
-    public Set<EndUser> getAuthor() {
+    public Set<EndUser> getEndUser() {
         return endUser;
     }
 
-    public void setAuthor(Set<EndUser> endUser) {
+    public void setEndUser(Set<EndUser> endUser) {
         this.endUser = endUser;
     }
 }

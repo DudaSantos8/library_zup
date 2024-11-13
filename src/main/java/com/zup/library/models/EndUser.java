@@ -1,31 +1,39 @@
 package com.zup.library.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 public class EndUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @UuidGenerator
+    private String id;
     private String name;
     private String lastName;
     private int yearOfBirth;
     private int yearOfDeath;
 
-    @ManyToMany(mappedBy = "endUser")
+    @ManyToMany(mappedBy = "users")
     private Set<Book> book = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "roles_users",
+            joinColumns = @JoinColumn(name = "role_fk"),
+            inverseJoinColumns = @JoinColumn(name = "user_fk"))
+    private Set<Role> roles;
 
     public EndUser() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

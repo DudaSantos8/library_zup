@@ -9,9 +9,9 @@ import java.util.List;
 public interface BookService {
     void save (BookRegisterDTO bookRegisterDTO);
 
-    void update(Long id, BookUpdateDTO bookUpdateDTO);
+    void update(String id, BookUpdateDTO bookUpdateDTO);
 
     List<BookResponseDTO> getAll ();
 
-    void delete (Long id);
+    void delete (String id);
 }

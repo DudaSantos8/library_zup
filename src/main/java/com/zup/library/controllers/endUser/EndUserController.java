@@ -14,19 +14,19 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/endUser")
+@RequestMapping("/api/user")
 public class EndUserController {
 
     @Autowired
     private EndUserService endUserService;
 
     @GetMapping()
-    public List<EndUserResponseDTO> showAuthors(){
+    public List<EndUserResponseDTO> showUsers(){
         return endUserService.getAllUsers();
     }
 
     @PostMapping
-    public ResponseEntity<?> saveAuthor(@RequestBody @Valid EndUserRegisterDTO registerDTO){
+    public ResponseEntity<?> saveUser(@RequestBody @Valid EndUserRegisterDTO registerDTO){
         try{
             endUserService.save(registerDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -35,7 +35,7 @@ public class EndUserController {
         }    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAuthor(@PathVariable Long id, @RequestBody @Valid EndUserUpdateDTO updateDTO){
+    public ResponseEntity<?> updateUser(@PathVariable String id, @RequestBody @Valid EndUserUpdateDTO updateDTO){
         try{
             endUserService.update(id ,updateDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -45,7 +45,7 @@ public class EndUserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAuthor(@PathVariable Long id){
+    public ResponseEntity<?> deleteUser(@PathVariable String id){
         try{
             endUserService.delete(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

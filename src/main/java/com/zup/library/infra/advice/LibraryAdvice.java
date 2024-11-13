@@ -1,4 +1,4 @@
-package com.zup.library.infra;
+package com.zup.library.infra.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
