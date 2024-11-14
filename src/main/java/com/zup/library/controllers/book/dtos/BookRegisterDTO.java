@@ -1,6 +1,6 @@
 package com.zup.library.controllers.book.dtos;
 
-import com.zup.library.models.EndUser;
+import com.zup.library.models.Consumers;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -16,7 +16,7 @@ public class BookRegisterDTO {
     private String description;
 
     @Size(max = 5, message = "this book can't have more than  five authors")
-    private Set<EndUser> endUser = new HashSet<>();
+    private Set<Consumers> endUser = new HashSet<>();
 
     public BookRegisterDTO() {
     }
@@ -37,11 +37,11 @@ public class BookRegisterDTO {
         this.description = description;
     }
 
-    public Set<EndUser> getEndUser() {
+    public Set<Consumers> getEndUser() {
         return endUser;
     }
 
-    public void setEndUser(Set<EndUser> endUser) {
+    public void setEndUser(Set<Consumers> endUser) {
         this.endUser = endUser;
     }
 }

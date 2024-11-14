@@ -1,4 +1,4 @@
-package com.zup.library.controllers.endUser;
+package com.zup.library.controllers;
 
 import com.zup.library.controllers.endUser.dtos.EndUserRegisterDTO;
 import com.zup.library.controllers.endUser.dtos.EndUserResponseDTO;

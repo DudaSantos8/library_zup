@@ -1,4 +1,4 @@
-package com.zup.library.controllers.book;
+package com.zup.library.controllers;
 
 import com.zup.library.controllers.book.dtos.BookRegisterDTO;
 import com.zup.library.controllers.book.dtos.BookResponseDTO;
@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class BookController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('AUTHOR')")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveBook(@RequestBody @Valid BookRegisterDTO registerDTO){
         bookService.save(registerDTO);

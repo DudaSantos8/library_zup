@@ -16,10 +16,10 @@ public class Book {
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinTable(name = "books_users",
+    @JoinTable(name = "books_consumers",
                joinColumns = @JoinColumn(name = "book_fk"),
-               inverseJoinColumns = @JoinColumn(name = "user_fk"))
-    private Set<EndUser> endUser = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name = "consumers_fk"))
+    private Set<Consumers> consumers = new HashSet<>();
 
     public Book() {
     }
@@ -48,11 +48,11 @@ public class Book {
         this.description = description;
     }
 
-    public Set<EndUser> getEndUser() {
-        return endUser;
+    public Set<Consumers> getConsumers() {
+        return consumers;
     }
 
-    public void setEndUser(Set<EndUser> endUser) {
-        this.endUser = endUser;
+    public void setConsumers(Set<Consumers> consumers) {
+        this.consumers = consumers;
     }
 }

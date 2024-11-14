@@ -7,8 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
-public class EndUser {
+public class Consumers {
     @Id
     @UuidGenerator
     private String id;
@@ -16,17 +15,18 @@ public class EndUser {
     private String lastName;
     private int yearOfBirth;
     private int yearOfDeath;
+    private String password;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "consumers")
     private Set<Book> book = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "roles_users",
+    @JoinTable(name = "roles_consumers",
             joinColumns = @JoinColumn(name = "role_fk"),
-            inverseJoinColumns = @JoinColumn(name = "user_fk"))
+            inverseJoinColumns = @JoinColumn(name = "consumers_fk"))
     private Set<Role> roles;
 
-    public EndUser() {
+    public Consumers() {
     }
 
     public String getId() {
@@ -69,11 +69,27 @@ public class EndUser {
         this.yearOfDeath = yearOfDeath;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Set<Book> getBook() {
         return book;
     }
 
     public void setBook(Set<Book> book) {
         this.book = book;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

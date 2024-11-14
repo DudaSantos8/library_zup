@@ -1,7 +1,10 @@
 package com.zup.library.controllers.endUser.dtos;
 
+import com.zup.library.models.Role;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
+
+import java.util.Set;
 
 public class EndUserUpdateDTO {
 
@@ -15,6 +18,10 @@ public class EndUserUpdateDTO {
     private int yearOfBirth;
 
     private int yearOfDeath;
+
+    private String password;
+
+    private Set<Role> roles;
 
     public EndUserUpdateDTO() {
     }
@@ -49,5 +56,21 @@ public class EndUserUpdateDTO {
 
     public void setYearOfDeath(int yearOfDeath) {
         this.yearOfDeath = yearOfDeath;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
