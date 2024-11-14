@@ -3,9 +3,11 @@ package com.zup.library.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;
 
 @Entity
+@Data
 @Table(name = "roles")
 public class Role {
     @Id
@@ -18,21 +20,5 @@ public class Role {
     }
 
     public Role() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ConsumerRepository extends JpaRepository<Consumers, String> {
-    Optional<Consumers> findByName(String name);
+    Optional<Consumers> findByUsername(String name);
 
-    boolean existsByName(String name);
+    boolean existsByUsername(String name);
 }

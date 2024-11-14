@@ -28,10 +28,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void save(BookRegisterDTO bookRegisterDTO) {
-        for(Consumers endUser : bookRegisterDTO.getEndUser()){
-            Optional<Consumers> userRepositoryOptional = consumerRepository.findById(endUser.getId());
+        for(Consumers consumer : bookRegisterDTO.getConsumers()){
+            Optional<Consumers> userRepositoryOptional = consumerRepository.findById(consumer.getId());
             if(userRepositoryOptional.isEmpty()){
-                throw new RuntimeException(endUser.getName() + " don't exist");
+                throw new RuntimeException(consumer.getUsername() + " don't exist");
             }
         }
         bookRepository.save(BookMapper.forBook(bookRegisterDTO));
@@ -42,12 +42,12 @@ public class BookServiceImpl implements BookService {
         Optional<Book> optional = bookRepository.findById(id);
         Set<Consumers> consumers = new HashSet<>();
         if(optional.isPresent()){
-            for(Consumers endUser : bookUpdateDTO.getEndUser()){
-                Optional<Consumers> userRepositoryOptional = consumerRepository.findById(endUser.getId());
+            for(Consumers consumer : bookUpdateDTO.getConsumers()){
+                Optional<Consumers> userRepositoryOptional = consumerRepository.findById(consumer.getId());
                 if(userRepositoryOptional.isEmpty()){
-                    throw new RuntimeException(endUser.getName() + " don't exist");
+                    throw new RuntimeException(consumer.getUsername() + " don't exist");
                 }
-                consumers.add(endUser);
+                consumers.add(consumer);
             }
             optional.get().setTitle(bookUpdateDTO.getTitle());
             optional.get().setConsumers(consumers);

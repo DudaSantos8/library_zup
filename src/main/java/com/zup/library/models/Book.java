@@ -1,12 +1,14 @@
 package com.zup.library.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Data
 public class Book {
 
     @Id
@@ -20,39 +22,4 @@ public class Book {
                joinColumns = @JoinColumn(name = "book_fk"),
                inverseJoinColumns = @JoinColumn(name = "consumers_fk"))
     private Set<Consumers> consumers = new HashSet<>();
-
-    public Book() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Consumers> getConsumers() {
-        return consumers;
-    }
-
-    public void setConsumers(Set<Consumers> consumers) {
-        this.consumers = consumers;
-    }
 }

@@ -27,30 +27,18 @@ public class BookController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('AUTHOR')")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveBook(@RequestBody @Valid BookRegisterDTO registerDTO){
         bookService.save(registerDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAuthor(@PathVariable String id, @RequestBody @Valid BookUpdateDTO updateDTO){
-        try{
-            bookService.update(id ,updateDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        }catch (Exception e){
-            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
-        }
+    public void updateAuthor(@PathVariable String id, @RequestBody @Valid BookUpdateDTO updateDTO){
+        bookService.update(id, updateDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBook(@PathVariable String id){
-        try{
-            bookService.delete(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }catch (Exception e){
-            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
-        }
-
+    public void deleteBook(@PathVariable String id){
+        bookService.delete(id);
     }
 }
